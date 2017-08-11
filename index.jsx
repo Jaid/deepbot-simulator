@@ -56,12 +56,79 @@ server.on("connection", (client, message) => {
 
         new Promise((resolve) => {
             setTimeout(resolve, lodash.random(0, program.randomLatency))
-        }).then(() => resolveApiCall(isAuthorized, apiName, command, args))
+        }).then(() => {
+                return new Promise((resolve, reject) => {
+
+                    if (apiName !== "api") {
+                        reject(`First parameter must be "api", but it is ${apiName}`)
+                        return
+                    }
+
+                    if (!command) {
+                        reject(`command is ${command}`)
+                        return
+                    }
+
+                    if (command === "register") {
+                        if (args[0] === program.apiKey) {
+                            resolve({"function": "register", param: "register", msg: "success"})
+                        } else {
+                            resolve({"function": "register", param: "error", msg: "incorrect api secret"})
+                        }
+                        isAuthorized = true
+                        return
+                    }
+
+                    if (!isAuthorized) {
+                        resolve({"function": command, param: "error", msg: "not authorized"})
+                        return
+                    }
+
+                    if (command === "get_user") {
+                        const user = userData[args[0]]
+                        if (user) {
+                            resolve({"function": command, param: args[0], msg: userToJson(user)})
+                        } else {
+                            reject(`User ${args[0]} not found!`)
+                        }
+                        return
+                    }
+
+                    if (command === "get_points") {
+                        const user = userData[args[0]]
+                        if (user) {
+                            numeral.locale("de")
+                            resolve({"function": command, param: args[0], msg: numeral(user.points).format("0.00")})
+                            numeral.locale("en")
+                        } else {
+                            reject(`User ${args[0]} not found!`)
+                        }
+                        return
+                    }
+
+                    if (command === "add_points") {
+                        const user = userData[args[0]]
+                        const pointsToAdd = args[1]
+                        if (user) {
+                            if (!pointsToAdd) {
+                                reject("Missing parameter!")
+                                return
+                            }
+                            user.points += +pointsToAdd
+                            resolve({"function": command, param: args[0], msg: "success"})
+                        } else {
+                            reject(`User ${args[0]} not found!`)
+                        }
+                        return
+                    }
+
+                })
+            }
+        )
             .then(data => {
                 console.log(chalk.gray(`[${clientName}] 🡸 ${JSON.stringify(data)}`))
                 client.send(JSON.stringify(data, null, 4))
             }).catch(error => console.log(chalk.gray(`[${clientName}] ⚠ ${error}`)))
-
 
     })
     client.on("close", () => {
@@ -83,75 +150,6 @@ process.stdin.on("readable", () => {
         // Nothing to do with CLI input
     }
 })
-
-function resolveApiCall(isAuthorized, apiName, command, args) {
-    return new Promise((resolve, reject) => {
-
-        if (apiName !== "api") {
-            reject(`First parameter must be "api", but it is ${apiName}`)
-            return
-        }
-
-        if (!command) {
-            reject(`command is ${command}`)
-            return
-        }
-
-        if (command === "register") {
-            if (args[0] === program.apiKey) {
-                resolve({"function": "register", param: "register", msg: "success"})
-            } else {
-                resolve({"function": "register", param: "error", msg: "incorrect api secret"})
-            }
-            isAuthorized = true
-            return
-        }
-
-        if (!isAuthorized) {
-            resolve({"function": command, param: "error", msg: "not authorized"})
-            return
-        }
-
-        if (command === "get_user") {
-            const user = userData[args[0]]
-            if (user) {
-                resolve({"function": command, param: args[0], msg: userToJson(user)})
-            } else {
-                reject(`User ${args[0]} not found!`)
-            }
-            return
-        }
-
-        if (command === "get_points") {
-            const user = userData[args[0]]
-            if (user) {
-                numeral.locale("de")
-                resolve({"function": command, param: args[0], msg: numeral(user.points).format("0.00")})
-                numeral.locale("en")
-            } else {
-                reject(`User ${args[0]} not found!`)
-            }
-            return
-        }
-
-        if (command === "add_points") {
-            const user = userData[args[0]]
-            const pointsToAdd = args[1]
-            if (user) {
-                if (!pointsToAdd) {
-                    reject("Missing parameter!")
-                    return
-                }
-                user.points += +pointsToAdd
-                resolve({"function": command, param: args[0], msg: "success"})
-            } else {
-                reject(`User ${args[0]} not found!`)
-            }
-            return
-        }
-
-    })
-}
 
 function userToJson(user) {
     return {
