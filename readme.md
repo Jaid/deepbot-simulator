@@ -19,7 +19,7 @@ Command line tool that simulates a [Deepbot API](https://github.com/DeepBot-API/
     -h, --help                     output usage information
 ```
 
-![Screenshot](http://i.imgur.com/JRn1Xce.png)
+![Screenshot](http://i.imgur.com/UlHiRqx.png)
 
 :warning: This is not a completely accurate simulation of how Deepbot answers your API calls.  
 It just imitates basic Deepbot functionality for testing your APIs.
