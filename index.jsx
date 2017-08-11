@@ -85,7 +85,7 @@ server.on("connection", (client, message) => {
                     }
 
                     if (command === "get_user") {
-                        const user = userData[args[0]]
+                        const user = userData[args[0].toLowerCase()]
                         if (user) {
                             resolve({"function": command, param: args[0], msg: userToJson(user)})
                         } else {
@@ -95,7 +95,7 @@ server.on("connection", (client, message) => {
                     }
 
                     if (command === "get_points") {
-                        const user = userData[args[0]]
+                        const user = userData[args[0].toLowerCase()]
                         if (user) {
                             numeral.locale("de")
                             resolve({"function": command, param: args[0], msg: numeral(user.points).format("0.00")})
@@ -107,7 +107,7 @@ server.on("connection", (client, message) => {
                     }
 
                     if (command === "add_points") {
-                        const user = userData[args[0]]
+                        const user = userData[args[0].toLowerCase()]
                         const pointsToAdd = args[1]
                         if (user) {
                             if (!pointsToAdd) {
