@@ -9,7 +9,7 @@
   "name": "deepbot-simulator",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jaid/giolette"
+    "url": "https://github.com/jaid/deepbot-simulator"
   },
   "description": "Simulates the Deepbot API using a WebSocket",
   "engines": {
