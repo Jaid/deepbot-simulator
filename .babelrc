@@ -1,0 +1,18 @@
+{
+  "sourceMaps": "inline",
+  "presets": [
+    "env",
+    "stage-2"
+  ],
+  "env": {
+    "production": {
+      "comments": false,
+      "presets": [
+        "babili"
+      ],
+      "plugins": [
+        "lodash"
+      ]
+    }
+  }
+}

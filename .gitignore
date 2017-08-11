@@ -1,0 +1,14 @@
+# IDE data
+/.idea/
+
+# Allowed IDE data
+!/.idea/encodings.xml
+
+# NodeJS/npm
+/node_modules/
+
+# Yarn
+/yarn-error.log
+
+# Compiled by Babel
+/index.js
