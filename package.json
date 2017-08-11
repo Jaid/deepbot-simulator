@@ -7,6 +7,7 @@
   },
   "version": "0.2.0",
   "name": "deepbot-simulator",
+  "preferGlobal": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/jaid/deepbot-simulator"
@@ -42,7 +43,6 @@
     "debug": "npm run build && babel-node --inspect index.jsx",
     "prepare": "npm run build-prod"
   },
-  "bin": {
-    "deepbot-simulator": "index.js"
-  }
+  "bin": "index.js",
+  "files": ["index.js"]
 }
