@@ -10,5 +10,5 @@
 # Yarn
 /yarn-error.log
 
-# Compiled by Babel
+# Compiled with Babel from index.jsx
 /index.js

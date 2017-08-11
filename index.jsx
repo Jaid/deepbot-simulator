@@ -142,7 +142,7 @@ function resolveApiCall(isAuthorized, apiName, command, args) {
                     reject("Missing parameter!")
                     return
                 }
-                user.points += pointsToAdd
+                user.points += +pointsToAdd
                 resolve({"function": command, param: args[0], msg: "success"})
             } else {
                 reject(`User ${args[0]} not found!`)
