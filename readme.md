@@ -26,17 +26,17 @@ It just imitates basic Deepbot functionality for testing your APIs.
 
 ## Installation
 
-```
+```bash
 npm install -g deepbot-simulator
 ```
 
 ## Running
 
-```
+```bash
 deepbot-simulator
 ```
 
-### Supported API calls
+## Supported API calls
 
 - `api|register|{secret}`
 - `api|get_user|{user}`
