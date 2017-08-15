@@ -2,6 +2,29 @@
 
 Command line tool that simulates a [Deepbot API](https://github.com/DeepBot-API/client-websocket) using a local WebSocket.
 
+![Screenshot](http://i.imgur.com/UlHiRqx.png)
+
+:warning: This is not a completely accurate simulation of how Deepbot answers your API calls.  
+It just imitates basic Deepbot functionality for testing your APIs.
+
+## Installation
+
+npm
+```bash
+npm install -g deepbot-simulator
+```
+
+Yarn
+```bash
+yarn global add deepbot-simulator
+```
+
+## Running
+
+```bash
+deepbot-simulator
+```
+
 ```
   Usage: deepbot-simulator [options]
 
@@ -15,26 +38,11 @@ Command line tool that simulates a [Deepbot API](https://github.com/DeepBot-API/
     -w, --no-color                 Port the WebSocket listens to
     -n, --no-users                 Keep the initial user database empty
     -a, --auth-all                 Automatically authenticate new clients
-    -r, --randomLatency [latency]  Adds response latencies from 0 to [latency] ms
-    -h, --help                     output usage information
+    -r, --randomLatency [latency]  Add response latencies from 0 to [latency] ms
+    -e, --events                   Send random music and newsub events to API clients
+    -h, --help                     Output usage information
 ```
 
-![Screenshot](http://i.imgur.com/UlHiRqx.png)
-
-:warning: This is not a completely accurate simulation of how Deepbot answers your API calls.  
-It just imitates basic Deepbot functionality for testing your APIs.
-
-## Installation
-
-```bash
-npm install -g deepbot-simulator
-```
-
-## Running
-
-```bash
-deepbot-simulator
-```
 
 ## Supported API calls
 

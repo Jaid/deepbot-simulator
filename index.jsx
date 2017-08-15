@@ -8,6 +8,11 @@ import numeral from "numeral"
 
 require("numeral/locales/de")
 
+const eventMessages = [
+    () => `newsub|${lodash.sample(["j4idn", "botemicmight", "gronkh"])}|giorap90|5|5|VGVzdCBTdWJzY3JpcHRpb24gZnJvbSBkZWVwYm90LXNpbXVsYXRvcg==`,
+    () => `music|loadVideo|${lodash.sample(["sdLv6uI_3xo", "0W_k5WzaCSY", "7SqFQYX4grY"])}|small`
+]
+
 program
     .description("Very basic WebSocket that simulates the Deepbot API")
     .option("-k, --api-key [api-key]", "API key used to give access", "1234")
@@ -15,7 +20,8 @@ program
     .option("-w, --no-color", "Port the WebSocket listens to")
     .option("-n, --no-users", "Keep the initial user database empty")
     .option("-a, --auth-all", "Automatically authenticate new clients")
-    .option("-r, --randomLatency [latency]", "Adds response latencies from 0 to [latency] ms", Number)
+    .option("-r, --random-latency [latency]", "Adds response latencies from 0 to [latency] ms", Number)
+    .option("-e, --events", "Send random music and newsub events to API clients")
     .parse(process.argv)
 
 chalk.enabled = !program.noColor
@@ -34,6 +40,7 @@ const userData = program.noUsers
             vip_expiry: moment().add(30, "days").valueOf()
         }
     }
+
 let server
 
 try {
@@ -41,6 +48,22 @@ try {
 } catch (error) {
     console.error(error)
     process.exit(1)
+}
+
+if (program.events) {
+    setInterval(() => {
+        if (lodash.isEmpty(server.clients)) {
+            return
+        }
+
+        const message = lodash.sample(eventMessages)()
+        console.log(chalk.yellow(`[${server.clients.length}] 🡸 ${message}`))
+        server.clients.forEach(client => {
+            if (client.readyState === WebSocket.OPEN) {
+                client.send(message)
+            }
+        })
+    }, 5000)
 }
 
 server.on("connection", (client, message) => {
@@ -141,6 +164,9 @@ if (program.authAll) {
     console.log(chalk.yellow(`--auth-all is enabled`))
 } else {
     console.log(chalk.yellow(`You can log in with api|register|${program.apiKey}`))
+}
+if (program.events) {
+    console.log(chalk.yellow(`--events is enabled`))
 }
 
 process.stdin.setEncoding("utf8")
