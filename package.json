@@ -42,7 +42,7 @@
   "scripts": {
     "build": "cross-env babel index.jsx --out-file index.js",
     "build-prod": "cross-env NODE_ENV=production babel index.jsx --out-file index.js",
-    "run": "cross-env npm run build && deepbot-simulator",
+    "run-prod": "cross-env yarn run build-prod && node index.js",
     "debug": "cross-env npm run build && babel-node --inspect index.jsx",
     "prepare": "cross-env npm run build-prod"
   },
