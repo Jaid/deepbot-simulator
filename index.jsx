@@ -74,7 +74,7 @@ server.on("connection", (client, message) => {
     console.log(chalk.green(`[${clientName}] Connected!`))
     client.on("message", message => {
 
-        const [apiName, command, ...args] = message.split("|")
+        const [apiName, command, ...args] = new String(message).trim().split("|")
         console.log(chalk.blue(`[${clientName}] 🡺 ${JSON.stringify({apiName: apiName, command: command, args: args})}`))
 
         new Promise((resolve) => {
