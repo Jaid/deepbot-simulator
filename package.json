@@ -23,19 +23,19 @@
     "bufferutil": "^4",
     "chalk": "^2.1.0",
     "commander": "^2.11.0",
-    "debug": "^3.0.0",
+    "debug": "^4.1.1",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "numeral": "^2.0.6",
-    "shelljs": "^0.7.8",
+    "shelljs": "^0.8.3",
     "utf-8-validate": "^5",
     "ws": "^6.1.2"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-plugin-lodash": "^3.2.11",
-    "babel-preset-babili": "^0.1.4",
     "babel-preset-env": "^1.6.0",
+    "babel-preset-minify": "^0.5.0",
     "babel-preset-stage-2": "^6.24.1",
     "cross-env": "^5.2.0"
   },
@@ -46,8 +46,5 @@
     "debug": "cross-env npm run build && babel-node --inspect index.jsx",
     "prepare": "cross-env npm run build-prod"
   },
-  "bin": "index.js",
-  "files": [
-    "index.js"
-  ]
+  "bin": "index.js"
 }

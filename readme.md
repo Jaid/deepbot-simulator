@@ -51,11 +51,11 @@ deepbot-simulator
 - `api|get_points|{user}`
 - `api|add_points|{user}|{points}`
 
-The only user in the default database is `j4idn`, so this is the testing procedure:
+The only user in the default database is `jaidchen`, so this is the testing procedure:
 
 ```
 api|register|1234
-api|get_points|j4idn
-api|add_points|j4idn|322
-api|get_points|j4idn
+api|get_points|jaidchen
+api|add_points|jaidchen|322
+api|get_points|jaidchen
 ```

@@ -9,7 +9,7 @@ import numeral from "numeral"
 require("numeral/locales/de")
 
 const eventMessages = [
-    () => `newsub|${lodash.sample(["j4idn", "botemicmight", "gronkh"])}|giorap90|5|5|VGVzdCBTdWJzY3JpcHRpb24gZnJvbSBkZWVwYm90LXNpbXVsYXRvcg==`,
+    () => `newsub|${lodash.sample(["jaidchen", "botemicmight", "gronkh"])}|giorap90|5|5|VGVzdCBTdWJzY3JpcHRpb24gZnJvbSBkZWVwYm90LXNpbXVsYXRvcg==`,
     () => `music|loadVideo|${lodash.sample(["sdLv6uI_3xo", "0W_k5WzaCSY", "7SqFQYX4grY"])}|small`
 ]
 
@@ -29,8 +29,8 @@ chalk.enabled = !program.noColor
 const userData = program.noUsers
     ? {}
     : {
-        j4idn: {
-            user: "j4idn",
+        jaidchen: {
+            user: "jaidchen",
             points: 13.37,
             watchtime: 9412,
             vip: 10,

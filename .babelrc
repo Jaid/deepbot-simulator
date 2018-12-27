@@ -1,13 +1,16 @@
 {
-  "sourceMaps": "inline",
   "presets": [
     "env",
     "stage-2"
   ],
   "env": {
+    "development": {
+      "sourceMaps": "inline"
+    },
     "production": {
       "comments": false,
       "presets": [
+        "minify"
       ],
       "plugins": [
         "lodash"
