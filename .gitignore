@@ -1,11 +1,6 @@
-# IDE data
-/.idea/
-
-# Allowed IDE data
-!/.idea/encodings.xml
-
 # NodeJS/npm
 /node_modules/
+/package-lock.json
 
 # Yarn
 /yarn-error.log

@@ -3,22 +3,24 @@
   "author": {
     "name": "Jaid",
     "url": "https://github.com/jaid",
-    "email": "dev@j4id.com"
+    "email": "jaid.jsx@gmail.com"
   },
-  "version": "0.5.1",
+  "version": "0.6.0",
   "name": "deepbot-simulator",
-  "preferGlobal": true,
+  "files": [
+    "index.js"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/jaid/deepbot-simulator"
   },
   "description": "Simulates the Deepbot API using a WebSocket",
   "engines": {
-    "node": ">=8",
-    "npm": ">=5"
+    "node": ">=10",
+    "yarn": ">=1.10"
   },
   "dependencies": {
-    "bufferutil": "^3.0.2",
+    "bufferutil": "^4",
     "chalk": "^2.1.0",
     "commander": "^2.11.0",
     "debug": "^3.0.0",
@@ -26,22 +28,23 @@
     "moment": "^2.18.1",
     "numeral": "^2.0.6",
     "shelljs": "^0.7.8",
-    "utf-8-validate": "^3.0.3",
-    "ws": "^3.1.0"
+    "utf-8-validate": "^5",
+    "ws": "^6.1.2"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-plugin-lodash": "^3.2.11",
     "babel-preset-babili": "^0.1.4",
     "babel-preset-env": "^1.6.0",
-    "babel-preset-stage-2": "^6.24.1"
+    "babel-preset-stage-2": "^6.24.1",
+    "cross-env": "^5.2.0"
   },
   "scripts": {
-    "build": "babel index.jsx --out-file index.js",
-    "build-prod": "NODE_ENV=production babel index.jsx --out-file index.js",
-    "run": "npm run build && deepbot-simulator",
-    "debug": "npm run build && babel-node --inspect index.jsx",
-    "prepare": "npm run build-prod"
+    "build": "cross-env babel index.jsx --out-file index.js",
+    "build-prod": "cross-env NODE_ENV=production babel index.jsx --out-file index.js",
+    "run": "cross-env npm run build && deepbot-simulator",
+    "debug": "cross-env npm run build && babel-node --inspect index.jsx",
+    "prepare": "cross-env npm run build-prod"
   },
   "bin": "index.js",
   "files": [
