@@ -1,5 +1,7 @@
 # deepbot-simulator
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Jaid/deepbot-simulator.svg)](https://greenkeeper.io/)
+
 Command line tool that simulates a [Deepbot API](https://github.com/DeepBot-API/client-websocket) using a local WebSocket.
 
 ![Screenshot](http://i.imgur.com/UlHiRqx.png)
